@@ -10,4 +10,6 @@
     <string name="add_todo_priority_medium">Medium</string>
     <string name="add_todo_priority_low">Low</string>
     <string name="add_todo_confirm_button">Add</string>
+    <string name="add_todo_title_empty">The title cannot be blank</string>
+    <string name="add_todo_success">Todo was added</string>
 </resources>

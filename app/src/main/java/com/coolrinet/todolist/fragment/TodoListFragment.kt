@@ -44,7 +44,9 @@ class TodoListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.todos.collect { todos ->
-                    binding.todoRecyclerView.adapter = TodoListAdapter(todos)
+                    val sortedTodos = todos.sortedBy { todo -> todo.priority }
+
+                    binding.todoRecyclerView.adapter = TodoListAdapter(sortedTodos)
 
                     if (todos.isEmpty()) {
                         binding.todoRecyclerView.visibility = View.GONE
