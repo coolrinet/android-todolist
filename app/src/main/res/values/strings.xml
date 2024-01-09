@@ -4,4 +4,10 @@
     <string name="todo_item_priority_placeholder">1</string>
     <string name="add_todo_button_desc">Add Todo</string>
     <string name="empty_todo_list">There is no todos…</string>
+    <string name="add_todo_title_hint">Describe your task…</string>
+    <string name="add_todo_priority_label">Priority</string>
+    <string name="add_todo_priority_high">High</string>
+    <string name="add_todo_priority_medium">Medium</string>
+    <string name="add_todo_priority_low">Low</string>
+    <string name="add_todo_confirm_button">Add</string>
 </resources>
