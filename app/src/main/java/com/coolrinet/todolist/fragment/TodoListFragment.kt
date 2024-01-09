@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.coolrinet.todolist.R
 import com.coolrinet.todolist.adapters.TodoListAdapter
 import com.coolrinet.todolist.databinding.FragmentTodoListBinding
 import com.coolrinet.todolist.viewmodel.TodoListViewModel
@@ -40,6 +42,14 @@ class TodoListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.apply {
+            addTodoFab.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_add_todo
+                )
+            }
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

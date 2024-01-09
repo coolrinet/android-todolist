@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.coolrinet.todolist.R
 import com.coolrinet.todolist.data.Todo
 import com.coolrinet.todolist.databinding.FragmentAddTodoBinding
@@ -75,6 +76,8 @@ class AddTodoFragment : Fragment() {
                 viewModel.createTodo(
                     viewModel.todoState.value
                 )
+
+                findNavController().popBackStack()
 
                 Snackbar.make(
                     view,
