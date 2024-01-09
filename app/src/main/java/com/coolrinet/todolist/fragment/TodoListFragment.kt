@@ -10,11 +10,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.coolrinet.todolist.R
 import com.coolrinet.todolist.adapters.TodoListAdapter
 import com.coolrinet.todolist.databinding.FragmentTodoListBinding
 import com.coolrinet.todolist.viewmodel.TodoListViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,6 +30,8 @@ class TodoListFragment : Fragment() {
         }
 
     private val viewModel: TodoListViewModel by viewModels()
+
+    private var todoListAdapter: TodoListAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,14 +56,48 @@ class TodoListFragment : Fragment() {
             }
         }
 
+        val itemTouchHelper =
+            ItemTouchHelper(object :
+                ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.START) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder,
+                ): Boolean {
+                    return false
+                }
+
+                override fun onSwiped(
+                    viewHolder: RecyclerView.ViewHolder,
+                    direction: Int,
+                ) {
+                    val deletedTodo =
+                        todoListAdapter?.getItem(viewHolder.adapterPosition)
+
+                    deletedTodo?.let { viewModel.deleteTodo(it) }
+
+                    todoListAdapter?.notifyItemRemoved(viewHolder.adapterPosition)
+
+                    Snackbar.make(
+                        view,
+                        R.string.delete_todo_success,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            })
+
+        itemTouchHelper.attachToRecyclerView(binding.todoRecyclerView)
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.todos.collect { todos ->
                     val sortedTodos = todos.sortedBy { todo -> todo.priority }
 
-                    binding.todoRecyclerView.adapter = TodoListAdapter(sortedTodos)
+                    todoListAdapter = TodoListAdapter(sortedTodos)
 
-                    if (todos.isEmpty()) {
+                    binding.todoRecyclerView.adapter = todoListAdapter
+
+                    if (sortedTodos.isEmpty()) {
                         binding.todoRecyclerView.visibility = View.GONE
                         binding.todoListEmpty.visibility = View.VISIBLE
                     } else {
@@ -73,5 +112,6 @@ class TodoListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        todoListAdapter = null
     }
 }

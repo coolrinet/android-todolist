@@ -51,4 +51,6 @@ class TodoListAdapter(
     }
 
     override fun getItemCount() = todos.size
+
+    fun getItem(position: Int) = todos[position]
 }

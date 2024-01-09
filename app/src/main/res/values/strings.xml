@@ -12,4 +12,5 @@
     <string name="add_todo_confirm_button">Add</string>
     <string name="add_todo_title_empty">The title cannot be blank</string>
     <string name="add_todo_success">Todo was added</string>
+    <string name="delete_todo_success">Todo was deleted</string>
 </resources>
