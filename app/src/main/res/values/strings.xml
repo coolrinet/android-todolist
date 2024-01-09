@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TodoList</string>
+    <string name="todo_item_title_placeholder">Todo title</string>
+    <string name="todo_item_priority_placeholder">1</string>
 </resources>
