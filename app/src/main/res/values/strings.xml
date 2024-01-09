@@ -2,5 +2,6 @@
     <string name="app_name">TodoList</string>
     <string name="todo_item_title_placeholder">Todo title</string>
     <string name="todo_item_priority_placeholder">1</string>
-    <string name="add_todo_button_desc">Add Todo Button</string>
+    <string name="add_todo_button_desc">Add Todo</string>
+    <string name="empty_todo_list">There is no todos…</string>
 </resources>

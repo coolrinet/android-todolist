@@ -22,6 +22,8 @@ class TodoListViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             todoRepository.getTodos().collect {
+                it.sortedBy { todo -> todo.priority }
+
                 _todos.value = it
             }
         }

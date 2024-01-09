@@ -15,7 +15,7 @@ private const val DATABASE_NAME = "todo_list"
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class AppModule {
+object AppModule {
     @Provides
     @Singleton
     fun provideTodoDatabase(application: Application): TodoDatabase {
