@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -43,6 +44,9 @@ class AddTodoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.title =
+            getString(R.string.add_todo_toolbar_title)
 
         binding.apply {
             addTodoTitle.doOnTextChanged { text, _, _, _ ->

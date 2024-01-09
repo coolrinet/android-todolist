@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">TodoList</string>
+    <string name="app_name">Todo List</string>
     <string name="todo_item_title_placeholder">Todo title</string>
     <string name="todo_item_priority_placeholder">1</string>
     <string name="add_todo_button_desc">Add Todo</string>
     <string name="empty_todo_list">There is no todos…</string>
-    <string name="add_todo_title_hint">Describe your task…</string>
+    <string name="add_todo_title_hint">Describe your todo…</string>
     <string name="add_todo_priority_label">Priority</string>
     <string name="add_todo_priority_high">High</string>
     <string name="add_todo_priority_medium">Medium</string>
@@ -13,4 +13,5 @@
     <string name="add_todo_title_empty">The title cannot be blank</string>
     <string name="add_todo_success">Todo was added</string>
     <string name="delete_todo_success">Todo was deleted</string>
+    <string name="add_todo_toolbar_title">Add a New Todo</string>
 </resources>
